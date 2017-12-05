@@ -1,20 +1,19 @@
 <template>
 
-<div id="musicframe">
+<div id="videoframe">
 
 <div id="border">
 
-<img v-bind:src="currentImage" width="100%" height="100%"/>
+<video id="video" ref="video" width="100%" height="100%" controls>
 
-<div id="controls" @click="audioFunction">
+  <source v-bind:src="currentVideo">
 
-<audio ref="audio" id="audio">
+Your browser does not support the video tag.
 
-<source v-bind:src="currentSong">
+</video>
 
-Your browser does not support the audio element.
+<div id="controls" @click="videoFunction">
 
-</audio>
 <button>Play</button>
 <button>Pause</button>
 
@@ -30,15 +29,11 @@ Your browser does not support the audio element.
 import { bus } from '../main';
 
 export default {
-  name: 'music-frame',
+  name: 'video-frame',
 
 props : {
  
- currentSong: {
-  type : String
- },
-
- currentImage: {
+ currentVideo: {
   type : String
  }
 
@@ -49,19 +44,19 @@ props : {
     }
   },
   methods: {
-    audioFunction: function(e){
+    videoFunction: function(e){
 
       let value = e.target.innerText;
 
       switch(value) {
 
         case "Play" : {
-              console.log(this.$refs.audio.play());
+            this.$refs.video.play();
               break;
         }
 
         case "Pause" : {
-              this.$refs.audio.pause();
+              this.$refs.video.pause();
               break;              
         }
       }
@@ -69,9 +64,12 @@ props : {
     }
   },
   created(){
+
     bus.$on('reload', () => {
-    this.$refs.audio.load();
-    this.$refs.audio.play();
+
+      this.$refs.video.load();     
+      this.$refs.video.play();
+
     })
   }
 }
@@ -80,6 +78,8 @@ props : {
 <style>
 
 #border {
+    background: url('https://ak1.picdn.net/shutterstock/videos/21586321/thumb/1.jpg') center no-repeat;
+    background-size: cover;
     border: 10px solid black;
     border-radius: 15px;
     margin: 2rem 0.5rem;
@@ -95,7 +95,7 @@ props : {
   height: 5em;
 }
 
-#controls button{
+#controls button {
   border:none;
   color: white;
   background: #172951;
@@ -104,4 +104,12 @@ props : {
   border-radius: 5px;
   font-size: 1em;
 }
+
+#video {
+
+height: 100%;
+width: 100%;
+
+}
+
 </style>

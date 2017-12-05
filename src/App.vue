@@ -2,9 +2,9 @@
 
 <div id="app">
 
-<musicframe v-bind:currentSong="currentSong" v-bind:currentImage="currentImage"></musicframe>
+<videoframe v-bind:currentVideo="currentVideo"></videoframe>
 
-<playlist v-bind:currentSong="currentSong" v-bind:currentImage="currentImage" @updateData="swapData($event)"></playlist>
+<playlist v-bind:currentVideo="currentVideo" @updateData="swapData($event)"></playlist>
 
 </div>
 
@@ -12,7 +12,7 @@
 
 <script>
 
-import musicframe from './components/musicFrame'
+import videoframe from './components/videoFrame'
 
 import playlist from './components/playList'
 
@@ -22,22 +22,20 @@ export default {
 
   components: {
 
-  'musicframe' : musicframe,
+  'videoframe' : videoframe,
   'playlist' : playlist
 
 },
 
   data () {
     return {
-      currentSong : '',
-      currentImage : 'src/assets/blah.jpg'
+      currentVideo : ''
     }
   },
 
   methods: {
     swapData: function(data) {
-     this.currentSong = data[0];
-     this.currentImage = data[1];
+     this.currentVideo = data;
     }
   }
 }
