@@ -1,8 +1,8 @@
-# vueMusicPlayer
+# vueVideoPlayer
 
-A basic music player made with VueJS :fire:
+A basic video player made with VueJS :fire:
 
-# music-player
+# video-player
 
 > A VueJS music player.
 

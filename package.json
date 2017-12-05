@@ -1,6 +1,6 @@
 {
-  "name": "music-player",
-  "description": "A VueJS music player.",
+  "name": "video-player",
+  "description": "A VueJS video player.",
   "version": "1.0.0",
   "author": "Jordan Irabor <vastcastiel@gmail.com>",
   "license": "MIT",
